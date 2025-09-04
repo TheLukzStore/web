@@ -164,25 +164,6 @@
       box-shadow: 0 0 25px rgba(255,255,255,0.9);
     }
 
-    /* 🎧 Tombol musik */
-    .music-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 10px 15px;
-      border-radius: 30px;
-      border: none;
-      background: #e50914;
-      color: #fff;
-      font-size: 1em;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 15px rgba(229,9,20,0.7);
-      transition: 0.3s;
-      z-index: 999;
-    }
-    .music-btn:hover { background: #fff; color: #000; }
-
     /* 📑 Footer */
     footer {
       text-align: center;
@@ -248,14 +229,13 @@
 
   <!-- 📑 Footer -->
   <footer>
-    <p>© 2025 TheLukz Official | Dibuat dengan ❤️</p>
+    <p>© 2025 TheLukz Official ❤️</p>
   </footer>
 
-  <!-- 🎧 Musik Anime Vibe dari GitHub -->
-  <audio id="bg-music" loop>
-    <source src="https://raw.githubusercontent.com/thelukzstore/web/main/audio.mp3" type="audio/mpeg">
+  <!-- 🎧 Musik Autoplay -->
+  <audio id="bg-music" autoplay loop muted playsinline>
+    <source src="https://raw.githubusercontent.com/thelukzstore/repo/main/audio.mp3" type="audio/mpeg">
   </audio>
-  <button onclick="toggleMusic()" class="music-btn">🎵 Play / Pause</button>
 
   <!-- 📜 Script JS -->
   <script>
@@ -276,18 +256,16 @@
         document.getElementById("splash").style.opacity = "0";
         document.getElementById("splash").style.visibility = "hidden";
       }, 2500);
-    });
 
-    // 🎧 Musik Play/Pause
-    const music = document.getElementById("bg-music");
-    function toggleMusic() {
-      if (music.paused) {
-        music.play();
-      } else {
-        music.pause();
-      }
-    }
+      // 🎧 Paksa autoplay dengan unmute
+      const music = document.getElementById("bg-music");
+      music.play().then(() => {
+        music.muted = false; // unmute setelah berhasil play
+      }).catch(err => {
+        console.log("⚠️ Autoplay mungkin diblokir browser:", err);
+      });
+    });
   </script>
 
 </body>
-</html>
+                                                  </html>
