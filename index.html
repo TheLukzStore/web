@@ -1,311 +1,150 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TheLukz Download Center</title>
-  <style>
-    /* 🌑 Style dasar */
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #0d0d0d;
-      color: #fff;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THELUKZ | Cyber Programmer</title>
 
-    /* 🚀 Splash screen */
-    #splash {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      z-index: 9999;
-      transition: opacity 1s ease, visibility 1s ease;
-    }
-    #splash img {
-      width: 150px;
-      border-radius: 50%;
-      border: 3px solid #e50914;
-      box-shadow: 0 0 30px rgba(229,9,20,0.8);
-      animation: spin 10s linear infinite;
-    }
-    #splash h1 {
-      margin-top: 20px;
-      color: #e50914;
-      font-size: 2em;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #e50914; }
-      to { text-shadow: 0 0 25px #ff0000; }
-    }
+<style>
+@keyframes glow {
+  0% { box-shadow: 0 0 10px #00fff7; }
+  50% { box-shadow: 0 0 30px #00fff7; }
+  100% { box-shadow: 0 0 10px #00fff7; }
+}
 
-    /* 🌑 Header */
-    header {
-      background: #111;
-      padding: 20px;
-      text-align: center;
-      border-bottom: 3px solid #e50914;
-    }
-    header .logo {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 3px solid #e50914;
-      animation: spin 12s linear infinite;
-      box-shadow: 0 0 20px rgba(229,9,20,0.7);
-    }
-    header h1 {
-      margin: 10px 0 5px;
-      color: #e50914;
-      font-size: 2.5em;
-    }
-    header p {
-      color: #ccc;
-      margin: 0;
-    }
+@keyframes glitch {
+  0% { text-shadow: 2px 0 red, -2px 0 cyan; }
+  25% { text-shadow: -2px 0 red, 2px 0 cyan; }
+  50% { text-shadow: 2px 2px red, -2px -2px cyan; }
+  75% { text-shadow: -2px -2px red, 2px 2px cyan; }
+  100% { text-shadow: 2px 0 red, -2px 0 cyan; }
+}
 
-    /* 📖 Tentang saya */
-    .about {
-      padding: 30px;
-      text-align: center;
-      background: #1a1a1a;
-      border-bottom: 2px solid #e50914;
-    }
-    .about h2 { color: #e50914; }
-    .about p {
-      max-width: 600px;
-      margin: 10px auto;
-      color: #ddd;
-      line-height: 1.6;
-    }
+@keyframes scan {
+  0% { top: -100%; }
+  100% { top: 100%; }
+}
 
-    /* Tombol Sosial */
-    .social {
-      margin-top: 20px;
-    }
-    .social a {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin: 5px;
-      padding: 10px 20px;
-      border-radius: 25px;
-      background: #e50914;
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-      box-shadow: 0 0 15px rgba(229,9,20,0.7);
-    }
-    .social a .icon {
-      width: 18px;
-      height: 18px;
-      filter: invert(1); /* jadi putih */
-    }
-    .social a:hover {
-      background: #fff;
-      color: #000;
-      box-shadow: 0 0 20px rgba(255,255,255,0.9);
-    }
+body {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  background: radial-gradient(circle at top, #020024, #000000);
+  color: #e0ffff;
+  overflow-x: hidden;
+}
 
-    /* 🔥 Warna tombol testimoni khusus */
-    .social .testimoni-group {
-      background: #28a745; /* hijau */
-      box-shadow: 0 0 15px rgba(40,167,69,0.7);
-    }
-    .social .testimoni-group:hover {
-      background: #fff;
-      color: #000;
-      box-shadow: 0 0 20px rgba(255,255,255,0.9);
-    }
+body::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(0,255,247,0.4);
+  animation: scan 4s linear infinite;
+}
 
-    /* 🔍 Search bar */
-    .search-bar {
-      text-align: center;
-      margin: 30px;
-    }
-    .search-bar input {
-      width: 60%;
-      max-width: 400px;
-      padding: 12px;
-      border-radius: 30px;
-      border: none;
-      outline: none;
-      font-size: 1em;
-      background: #222;
-      color: #fff;
-      box-shadow: 0 0 10px rgba(229,9,20,0.7);
-    }
+header {
+  text-align: center;
+  padding: 90px 20px 60px;
+}
 
-    /* 📂 File cards */
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .card {
-      background: #1a1a1a;
-      border: 2px solid #e50914;
-      border-radius: 15px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 25px rgba(229,9,20,0.7);
-    }
-    .card h3 { margin: 10px 0; color: #e50914; }
+.profile-img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 3px solid #00fff7;
+  animation: glow 2s infinite;
+  object-fit: cover;
+}
 
-    /* Tombol download normal */
-    .download-btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 20px;
-      border-radius: 25px;
-      background: #e50914;
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-      box-shadow: 0 0 15px rgba(229,9,20,0.7);
-    }
-    .download-btn:hover {
-      background: #fff;
-      color: #000;
-      box-shadow: 0 0 25px rgba(255,255,255,0.9);
-    }
+h1 {
+  font-size: 52px;
+  margin: 15px 0 5px;
+  letter-spacing: 5px;
+  animation: glitch 1.5s infinite;
+  color: #00fff7;
+}
 
-    /* Tombol disabled */
-    .download-disabled {
-      background: #555 !important;
-      color: #ccc !important;
-      box-shadow: none !important;
-      cursor: not-allowed;
-      opacity: 0.8;
-    }
+header p {
+  opacity: 0.8;
+}
 
-    /* 📑 Footer */
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      margin-top: 30px;
-      border-top: 3px solid #e50914;
-    }
-  </style>
+section {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.card {
+  background: rgba(0,255,247,0.05);
+  border: 1px solid rgba(0,255,247,0.25);
+  border-radius: 14px;
+  padding: 30px;
+  margin-bottom: 30px;
+  transition: 0.4s;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 0 25px rgba(0,255,247,0.4);
+}
+
+h2 {
+  color: #00fff7;
+  text-shadow: 0 0 8px #00fff7;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  opacity: 0.6;
+  border-top: 1px solid rgba(0,255,247,0.3);
+}
+</style>
 </head>
+
 <body>
 
-  <!-- 🚀 Splash screen -->
-  <div id="splash">
-    <img src="thumb.png" alt="Logo TheLukz">
-    <h1>THELUKZ WEBSITE</h1>
-  </div>
+<header>
+  <img src="img/profile.jpg" class="profile-img" alt="THELUKZ">
+  <h1>THELUKZ</h1>
+  <p>CYBER PROGRAMMER • WEB DEVELOPER</p>
+</header>
 
-  <!-- 🌑 Header -->
-  <header>
-    <img src="thumb.png" alt="Logo Channel" class="logo">
-    <h1>TheLukz Official</h1>
-    <p>Selamat datang di website resmi TheLukz 🚀</p>
-  </header>
-
-  <!-- 📖 Tentang Saya -->
-  <section class="about">
-    <h2>Tentang Saya</h2>
+<section>
+  <div class="card">
+    <h2>About Me</h2>
     <p>
-      Halo, saya TheLukz.<br>
-      Website ini dibuat untuk berbagi file, aplikasi, dan konten menarik buat kalian semua.<br>
-      Jangan lupa join grup WhatsApp atau follow channel Telegram saya biar nggak ketinggalan update!
+      Saya <b>THELUKZ</b>, seorang programmer yang tertarik pada
+      web development, bot automation, dan dunia server.
+      Fokus saya adalah eksplorasi, belajar, dan berkembang.
     </p>
-    <div class="social">
-      <a href="https://chat.whatsapp.com/CKBndS1Ff7cCzJtfV6Mmam?mode=ems_copy_c" target="_blank">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp" class="icon"> WhatsApp Group
-      </a>
-      <a href="https://t.me/thelukzofficial" target="_blank">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="Telegram" class="icon"> Telegram Channel
-      </a>
-      <a href="https://whatsapp.com/channel/0029VaNG9T1Au3aUYoqiZ73q" target="_blank" class="testimoni-group">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="Testimoni" class="icon"> Grup Testimoni
-      </a>
-    </div>
-  </section>
-
-  <!-- 🔍 Search bar -->
-  <div class="search-bar">
-    <input type="text" id="search" placeholder="Cari file...">
   </div>
 
-  <!-- 📂 Daftar file download -->
-  <div class="container" id="file-container">
-    <div class="card">
-      <h3>HOLOGRAM 3D</h3>
-      <p>Ukuran: 2 MB</p>
-      <a href="https://sfile.mobi/ENXaOrqAIns" class="download-btn" target="_blank">Download</a>
-    </div>
-    <div class="card">
-      <h3>AIMLOCK</h3>
-      <p>Ukuran: 15 MB</p>
-      <a href="#" class="download-btn download-disabled" onclick="return false;">Belum Tersedia</a>
-    </div>
-    <div class="card">
-      <h3>BYPASS</h3>
-      <p>Ukuran: 30 MB</p>
-      <a href="#" class="download-btn download-disabled" onclick="return false;">Belum Tersedia</a>
-    </div>
+  <div class="card">
+    <h2>Skills</h2>
+    <ul>
+      <li>HTML • CSS • JavaScript</li>
+      <li>Bot Telegram (Python)</li>
+      <li>Linux • Termux</li>
+      <li>GitHub Pages</li>
+    </ul>
   </div>
 
-  <!-- 📑 Footer -->
-  <footer>
-    <p>© 2025 TheLukz Official ❤️</p>
-  </footer>
+  <div class="card">
+    <h2>Activity</h2>
+    <ul>
+      <li>Membuat website personal</li>
+      <li>Mengembangkan bot Telegram</li>
+      <li>Eksperimen server & domain</li>
+    </ul>
+  </div>
+</section>
 
-  <!-- 🎧 Musik Autoplay -->
-  <audio id="bg-music" autoplay loop muted playsinline>
-    <source src="https://raw.githubusercontent.com/thelukzstore/repo/main/audio.mp3" type="audio/mpeg">
-  </audio>
-
-  <!-- 📜 Script JS -->
-  <script>
-    // 🔍 Fungsi search
-    const searchInput = document.getElementById('search');
-    const cards = document.querySelectorAll('.card');
-    searchInput.addEventListener('keyup', function() {
-      const query = searchInput.value.toLowerCase();
-      cards.forEach(card => {
-        const text = card.innerText.toLowerCase();
-        card.style.display = text.includes(query) ? 'block' : 'none';
-      });
-    });
-
-    // 🚀 Splash screen auto hilang
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        document.getElementById("splash").style.opacity = "0";
-        document.getElementById("splash").style.visibility = "hidden";
-      }, 2500);
-
-      // 🎧 Paksa autoplay dengan unmute
-      const music = document.getElementById("bg-music");
-      music.play().then(() => {
-        music.muted = false; // unmute setelah berhasil play
-      }).catch(err => {
-        console.log("⚠️ Autoplay mungkin diblokir browser:", err);
-      });
-    });
-  </script>
+<footer>
+  © 2025 THELUKZ — Dark Cyber Web
+</footer>
 
 </body>
 </html>
