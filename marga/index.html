@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marga Official Group</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #07070c;
+  --card: rgba(255,255,255,0.06);
+  --text: #ffffff;
+  --muted: #b5b5b5;
+  --radius: 18px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #151530, #05050a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  overflow: hidden;
+}
+
+/* RGB animated background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    red,
+    cyan,
+    lime,
+    magenta,
+    red
+  );
+  background-size: 400% 400%;
+  animation: rgb 14s ease infinite;
+  opacity: 0.18;
+  z-index: -1;
+}
+
+@keyframes rgb {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Card */
+.card {
+  width: 90%;
+  max-width: 420px;
+  background: var(--card);
+  backdrop-filter: blur(18px);
+  border-radius: var(--radius);
+  padding: 30px;
+  box-shadow: 0 0 40px rgba(0,255,255,0.25);
+  border: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+  animation: fadeUp 1s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Avatar */
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 14px;
+  border: 2px solid cyan;
+  box-shadow: 0 0 20px rgba(0,255,255,0.6);
+}
+
+/* Text */
+.title {
+  font-size: 26px;
+  font-weight: 700;
+  background: linear-gradient(90deg, cyan, magenta, lime);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, cyan, magenta, transparent);
+  margin: 22px 0;
+}
+
+/* Button */
+.join-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, cyan, magenta);
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 16px;
+  transition: 0.3s;
+  box-shadow: 0 0 22px rgba(0,255,255,0.6);
+}
+
+.join-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 34px rgba(255,0,255,0.9);
+}
+
+/* Music */
+.music {
+  margin-top: 18px;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Footer */
+.footer {
+  margin-top: 24px;
+  font-size: 12px;
+  color: #888;
+}
+
+.footer span {
+  color: cyan;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <!-- PROFILE IMAGE -->
+  <img src="../profile.jpg" class="avatar" alt="Owner">
+
+  <div class="title">MARGA OFFICIAL</div>
+  <div class="subtitle">Private WhatsApp Community</div>
+
+  <div class="divider"></div>
+
+  <p style="font-size:14px; color:#ddd;">
+    Bergabunglah ke komunitas marga kami untuk informasi, relasi, dan update eksklusif.
+  </p>
+
+  <!-- GANTI LINK GRUP -->
+  <a href="https://chat.whatsapp.com/ISI_LINK_GRUP_KAMU" target="_blank" class="join-btn">
+    🚀 Join WhatsApp Group
+  </a>
+
+  <!-- Music control -->
+  <div class="music" onclick="toggleMusic()">
+    🎵 Background Music: <span id="musicStatus">OFF</span>
+  </div>
+
+  <div class="footer">
+    Owner: <span>THELUKZ</span><br>
+    © 2026 All Rights Reserved
+  </div>
+
+</div>
+
+<!-- AUDIO LOCAL -->
+<audio id="bgMusic" loop>
+  <source src="../audio.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+const status = document.getElementById("musicStatus");
+
+/* Play music after first user interaction */
+document.addEventListener("click", () => {
+  if (music.paused) {
+    music.volume = 0.6;
+    music.play().then(() => {
+      status.innerText = "ON";
+    }).catch(() => {});
+  }
+}, { once: true });
+
+function toggleMusic() {
+  if (music.paused) {
+    music.play();
+    status.innerText = "ON";
+  } else {
+    music.pause();
+    status.innerText = "OFF";
+  }
+}
+</script>
+
+</body>
+</html>
