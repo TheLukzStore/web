@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DarkSquad Official Group</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --card: rgba(255,255,255,0.06);
+  --radius: 18px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #151530, #05050a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* RGB BACKGROUND */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(120deg, red, cyan, lime, magenta, red);
+  background-size: 400% 400%;
+  animation: rgb 14s ease infinite;
+  opacity: 0.18;
+  z-index: -1;
+}
+
+@keyframes rgb {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.card {
+  width: 90%;
+  max-width: 420px;
+  background: var(--card);
+  backdrop-filter: blur(18px);
+  border-radius: var(--radius);
+  padding: 30px;
+  box-shadow: 0 0 40px rgba(0,255,255,0.25);
+  text-align: center;
+}
+
+/* AVATAR */
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 2px solid cyan;
+  box-shadow: 0 0 20px rgba(0,255,255,0.6);
+  margin-bottom: 14px;
+}
+
+/* TEXT */
+.title {
+  font-size: 26px;
+  font-weight: 700;
+  background: linear-gradient(90deg, cyan, magenta, lime);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #b5b5b5;
+  margin-bottom: 20px;
+}
+
+/* BUTTONS */
+.rules-btn,
+.join-btn,
+.music-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.rules-btn {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+.join-btn {
+  display: block;
+  text-decoration: none;
+  background: linear-gradient(135deg, cyan, magenta);
+  color: #000;
+  box-shadow: 0 0 22px rgba(0,255,255,0.6);
+}
+
+.join-btn.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+  filter: grayscale(1);
+}
+
+.music-btn {
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: cyan;
+}
+
+/* MODAL RULES */
+.rules-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.rules-box {
+  width: 90%;
+  max-width: 380px;
+  background: rgba(10,10,25,0.95);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 0 40px cyan;
+}
+
+.rules-content {
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 14px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.agree {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.confirm-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  background: linear-gradient(135deg, cyan, magenta);
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <img src="../marga.jpg" class="avatar">
+  <div class="title">DARKSQUAD OFFICIAL</div>
+  <div class="subtitle">Private WhatsApp Community</div>
+
+  <button class="rules-btn" onclick="openRules()">📜 RULES GRUP</button>
+
+  <a id="joinBtn"
+     href="https://chat.whatsapp.com/D4gb2EDPYNB0LFQJLmB33j"
+     target="_blank"
+     class="join-btn disabled">
+     🚀 Join WhatsApp Group
+  </a>
+
+  <button class="music-btn" onclick="toggleMusic(event)">
+    🎵 Play Music
+  </button>
+</div>
+
+<!-- RULES MODAL -->
+<div class="rules-modal" id="rulesModal">
+  <div class="rules-box">
+    <h3>📜 RULES GRUP</h3>
+
+    <div class="rules-content" id="rulesContent">
+      <p>1. ❌ No spam & promosi</p>
+      <p>2. ❌ No toxic / SARA</p>
+      <p>3. ✅ Hormati member</p>
+      <p>4. ✅ Patuhi admin</p>
+      <p>5. ❌ Konten ilegal</p>
+      <p style="margin-top:20px;">— END RULES —</p>
+    </div>
+
+    <label class="agree">
+      <input type="checkbox" id="agreeCheck" disabled>
+      Saya sudah membaca & setuju
+    </label>
+
+    <button class="confirm-btn" onclick="agreeRules()">Setuju & Tutup</button>
+  </div>
+</div>
+
+<!-- AUDIO -->
+<audio id="bgMusic" loop>
+  <source src="../audio.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+const joinBtn = document.getElementById("joinBtn");
+const rulesModal = document.getElementById("rulesModal");
+const agreeCheck = document.getElementById("agreeCheck");
+const rulesContent = document.getElementById("rulesContent");
+
+let musicUnlocked = false;
+
+/* ===== AUDIO SYSTEM ===== */
+function playMusic() {
+  if (music.paused) {
+    music.volume = 0.6;
+    music.play().then(() => {
+      localStorage.setItem("musicOn", "true");
+    }).catch(() => {});
+  }
+}
+
+function unlockAudio() {
+  if (!musicUnlocked) {
+    musicUnlocked = true;
+    playMusic();
+  }
+}
+
+/* Auto play after refresh (needs 1 interaction) */
+window.addEventListener("load", () => {
+  if (localStorage.getItem("musicOn") === "true") {
+    document.addEventListener("click", unlockAudio, { once: true });
+  }
+});
+
+function toggleMusic(e) {
+  e.stopPropagation();
+  unlockAudio();
+
+  if (music.paused) {
+    playMusic();
+    e.target.innerText = "⏸ Pause Music";
+  } else {
+    music.pause();
+    localStorage.setItem("musicOn", "false");
+    e.target.innerText = "🎵 Play Music";
+  }
+}
+
+/* ===== ANTI BYPASS RULES ===== */
+if (localStorage.getItem("rulesAccepted") === "true") {
+  joinBtn.classList.remove("disabled");
+}
+
+function openRules() {
+  unlockAudio();
+  rulesModal.style.display = "flex";
+}
+
+rulesContent.addEventListener("scroll", () => {
+  if (rulesContent.scrollTop + rulesContent.clientHeight >= rulesContent.scrollHeight - 5) {
+    agreeCheck.disabled = false;
+  }
+});
+
+function agreeRules() {
+  if (!agreeCheck.checked) {
+    alert("Scroll rules sampai bawah & centang persetujuan!");
+    return;
+  }
+  localStorage.setItem("rulesAccepted", "true");
+  joinBtn.classList.remove("disabled");
+  rulesModal.style.display = "none";
+}
+
+/* Join click also triggers audio */
+joinBtn.addEventListener("click", () => {
+  unlockAudio();
+});
+</script>
+
+</body>
+</html>
