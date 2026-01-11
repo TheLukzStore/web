@@ -198,17 +198,16 @@ body::before {
   <div class="rules-box">
     <h3>📜 RULES GRUP</h3>
 
-    <div class="rules-content" id="rulesContent">
+    <div class="rules-content">
       <p>1. ❌ No spam & promosi</p>
       <p>2. ❌ No toxic / SARA</p>
       <p>3. ✅ Hormati member</p>
       <p>4. ✅ Patuhi admin</p>
       <p>5. ❌ Konten ilegal</p>
-      <p style="margin-top:20px;">— END RULES —</p>
     </div>
 
     <label class="agree">
-      <input type="checkbox" id="agreeCheck" disabled>
+      <input type="checkbox" id="agreeCheck">
       Saya sudah membaca & setuju
     </label>
 
@@ -226,11 +225,10 @@ const music = document.getElementById("bgMusic");
 const joinBtn = document.getElementById("joinBtn");
 const rulesModal = document.getElementById("rulesModal");
 const agreeCheck = document.getElementById("agreeCheck");
-const rulesContent = document.getElementById("rulesContent");
 
 let musicUnlocked = false;
 
-/* ===== AUDIO SYSTEM ===== */
+/* AUDIO SYSTEM */
 function playMusic() {
   if (music.paused) {
     music.volume = 0.6;
@@ -247,7 +245,6 @@ function unlockAudio() {
   }
 }
 
-/* Auto play after refresh (needs 1 interaction) */
 window.addEventListener("load", () => {
   if (localStorage.getItem("musicOn") === "true") {
     document.addEventListener("click", unlockAudio, { once: true });
@@ -268,7 +265,7 @@ function toggleMusic(e) {
   }
 }
 
-/* ===== ANTI BYPASS RULES ===== */
+/* RULES SYSTEM */
 if (localStorage.getItem("rulesAccepted") === "true") {
   joinBtn.classList.remove("disabled");
 }
@@ -278,15 +275,9 @@ function openRules() {
   rulesModal.style.display = "flex";
 }
 
-rulesContent.addEventListener("scroll", () => {
-  if (rulesContent.scrollTop + rulesContent.clientHeight >= rulesContent.scrollHeight - 5) {
-    agreeCheck.disabled = false;
-  }
-});
-
 function agreeRules() {
   if (!agreeCheck.checked) {
-    alert("Scroll rules sampai bawah & centang persetujuan!");
+    alert("Silakan centang persetujuan terlebih dahulu!");
     return;
   }
   localStorage.setItem("rulesAccepted", "true");
@@ -294,7 +285,6 @@ function agreeRules() {
   rulesModal.style.display = "none";
 }
 
-/* Join click also triggers audio */
 joinBtn.addEventListener("click", () => {
   unlockAudio();
 });
