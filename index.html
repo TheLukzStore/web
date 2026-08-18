@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>THELUKZ | OFFICIAL</title>
+
+<style>
+
+/* ==============================
+   ANIMATION
+============================== */
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px #00fff7;
+  }
+
+  50% {
+    box-shadow: 0 0 30px #00fff7;
+  }
+
+  100% {
+    box-shadow: 0 0 10px #00fff7;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 0 red, -2px 0 cyan;
+  }
+
+  25% {
+    text-shadow: -2px 0 red, 2px 0 cyan;
+  }
+
+  50% {
+    text-shadow: 2px 2px red, -2px -2px cyan;
+  }
+
+  75% {
+    text-shadow: -2px -2px red, 2px 2px cyan;
+  }
+
+  100% {
+    text-shadow: 2px 0 red, -2px 0 cyan;
+  }
+}
+
+@keyframes scan {
+  0% {
+    top: -100%;
+  }
+
+  100% {
+    top: 100%;
+  }
+}
+
+
+/* ==============================
+   BODY
+============================== */
+
+body {
+  margin: 0;
+
+  font-family: 'Courier New', monospace;
+
+  background:
+    radial-gradient(
+      circle at top,
+      #020024,
+      #000000
+    );
+
+  color: #e0ffff;
+
+  overflow-x: hidden;
+}
+
+
+/* Scanline */
+
+body::after {
+  content: "";
+
+  position: fixed;
+
+  left: 0;
+  top: -100%;
+
+  width: 100%;
+  height: 3px;
+
+  background: rgba(0, 255, 247, 0.4);
+
+  animation: scan 4s linear infinite;
+
+  pointer-events: none;
+
+  z-index: 9999;
+}
+
+
+/* ==============================
+   HEADER
+============================== */
+
+header {
+  text-align: center;
+
+  padding: 90px 20px 60px;
+}
+
+
+/* Profile */
+
+.profile-img {
+  width: 160px;
+  height: 160px;
+
+  border-radius: 50%;
+
+  border: 3px solid #00fff7;
+
+  animation: glow 2s infinite;
+
+  object-fit: cover;
+}
+
+
+/* Title */
+
+h1 {
+  font-size: 52px;
+
+  margin: 15px 0 5px;
+
+  letter-spacing: 5px;
+
+  animation: glitch 1.5s infinite;
+
+  color: #00fff7;
+}
+
+
+/* Subtitle */
+
+header p {
+  opacity: 0.8;
+
+  margin-top: 18px;
+}
+
+
+/* ==============================
+   SOCIAL BUTTONS
+============================== */
+
+.social-buttons {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin: 22px 0 15px;
+
+  flex-wrap: wrap;
+}
+
+
+/* Button */
+
+.social-btn {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 11px 18px;
+
+  min-width: 100px;
+
+  border: 1px solid #00fff7;
+
+  border-radius: 10px;
+
+  color: #e0ffff;
+
+  text-decoration: none;
+
+  font-weight: bold;
+
+  font-family: 'Courier New', monospace;
+
+  background: rgba(0, 255, 247, 0.06);
+
+  transition: 0.3s ease;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+
+/* Icon */
+
+.social-icon {
+
+  width: 22px;
+
+  height: 22px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 20px;
+
+  font-weight: bold;
+}
+
+
+/* Hover */
+
+.social-btn:hover {
+
+  transform:
+    translateY(-5px)
+    scale(1.05);
+
+  color: #000;
+
+  background: #00fff7;
+
+  box-shadow:
+    0 0 20px #00fff7;
+}
+
+
+/* ==============================
+   TIKTOK
+============================== */
+
+.social-btn.tiktok {
+
+  border-color: #00fff7;
+}
+
+.social-btn.tiktok:hover {
+
+  background: #00fff7;
+
+  border-color: #00fff7;
+
+  box-shadow:
+    0 0 10px #00fff7,
+    0 0 25px #ff0050;
+}
+
+
+/* ==============================
+   INSTAGRAM
+============================== */
+
+.social-btn.instagram {
+
+  border-color: #ff00c8;
+}
+
+.social-btn.instagram:hover {
+
+  background: #ff00c8;
+
+  border-color: #ff00c8;
+
+  box-shadow:
+    0 0 10px #ff00c8,
+    0 0 25px #ff00c8;
+}
+
+
+/* ==============================
+   WHATSAPP
+============================== */
+
+.social-btn.whatsapp {
+
+  border-color: #00ff88;
+}
+
+.social-btn.whatsapp:hover {
+
+  background: #00ff88;
+
+  border-color: #00ff88;
+
+  box-shadow:
+    0 0 10px #00ff88,
+    0 0 25px #00ff88;
+}
+
+
+/* ==============================
+   YOUTUBE
+============================== */
+
+.social-btn.youtube {
+
+  border-color: #ff0033;
+}
+
+.social-btn.youtube:hover {
+
+  background: #ff0033;
+
+  border-color: #ff0033;
+
+  box-shadow:
+    0 0 10px #ff0033,
+    0 0 25px #ff0033;
+}
+
+
+/* ==============================
+   SECTION
+============================== */
+
+section {
+
+  max-width: 900px;
+
+  margin: auto;
+
+  padding: 20px;
+}
+
+
+/* ==============================
+   CARD
+============================== */
+
+.card {
+
+  background:
+    rgba(0, 255, 247, 0.05);
+
+  border:
+    1px solid
+    rgba(0, 255, 247, 0.25);
+
+  border-radius: 14px;
+
+  padding: 30px;
+
+  margin-bottom: 30px;
+
+  transition: 0.4s;
+}
+
+
+.card:hover {
+
+  transform:
+    translateY(-8px)
+    scale(1.01);
+
+  box-shadow:
+    0 0 25px
+    rgba(0, 255, 247, 0.4);
+}
+
+
+/* ==============================
+   HEADING
+============================== */
+
+h2 {
+
+  color: #00fff7;
+
+  text-shadow:
+    0 0 8px #00fff7;
+}
+
+
+/* ==============================
+   LIST
+============================== */
+
+li {
+
+  margin: 10px 0;
+
+}
+
+
+/* ==============================
+   FOOTER
+============================== */
+
+footer {
+
+  text-align: center;
+
+  padding: 20px;
+
+  font-size: 14px;
+
+  opacity: 0.6;
+
+  border-top:
+    1px solid
+    rgba(0, 255, 247, 0.3);
+}
+
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media (max-width: 600px) {
+
+  header {
+
+    padding:
+      70px 15px 45px;
+  }
+
+  .profile-img {
+
+    width: 130px;
+
+    height: 130px;
+  }
+
+  h1 {
+
+    font-size: 38px;
+
+    letter-spacing: 4px;
+  }
+
+  .social-buttons {
+
+    gap: 8px;
+  }
+
+  .social-btn {
+
+    min-width: auto;
+
+    padding:
+      9px 12px;
+
+    font-size: 12px;
+  }
+
+  .social-icon {
+
+    font-size: 17px;
+
+    width: 19px;
+
+    height: 19px;
+  }
+
+  section {
+
+    padding: 15px;
+  }
+
+  .card {
+
+    padding: 22px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ==============================
+     HEADER
+============================== -->
+
+<header>
+
+
+  <!-- PROFILE -->
+
+  <img
+    src="profile.jpg"
+    class="profile-img"
+    alt="THELUKZ"
+  >
+
+
+  <!-- NAME -->
+
+  <h1>
+    THELUKZ
+  </h1>
+
+
+  <!-- ============================
+       SOCIAL MEDIA
+  ============================= -->
+
+  <div class="social-buttons">
+
+
+    <!-- TIKTOK -->
+
+    <a
+      href="https://www.tiktok.com/@lukmanhidayatt_"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="social-btn tiktok"
+    >
+
+      <span class="social-icon">
+        ♪
+      </span>
+
+      TikTok
+
+    </a>
+
+
+    <!-- INSTAGRAM -->
+
+    <a
+      href="https://www.instagram.com/thelukzstory"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="social-btn instagram"
+    >
+
+      <span class="social-icon">
+        ◎
+      </span>
+
+      Instagram
+
+    </a>
+
+
+    <!-- WHATSAPP -->
+
+    <a
+      href="https://whatsapp.com/channel/XXXXXXXXXXXX"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="social-btn whatsapp"
+    >
+
+      <span class="social-icon">
+        ◉
+      </span>
+
+      WhatsApp
+
+    </a>
+
+
+    <!-- YOUTUBE -->
+
+    <a
+      href="https://www.youtube.com/@thelukzz"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="social-btn youtube"
+    >
+
+      <span class="social-icon">
+        ▶
+      </span>
+
+      YouTube
+
+    </a>
+
+
+  </div>
+
+
+  <!-- SUBTITLE -->
+
+  <p>
+    CYBER PROGRAMMER • WEB DEVELOPER
+  </p>
+
+
+</header>
+
+
+
+<!-- ==============================
+     CONTENT
+============================== -->
+
+<section>
+
+
+  <!-- ABOUT -->
+
+  <div class="card">
+
+    <h2>
+      About Me
+    </h2>
+
+    <p>
+
+      Saya <b>THELUKZ</b>, seorang programmer
+      yang tertarik pada web development,
+      bot automation, dan dunia server.
+
+      Fokus saya adalah eksplorasi,
+      belajar, dan berkembang.
+
+    </p>
+
+  </div>
+
+
+
+  <!-- SKILLS -->
+
+  <div class="card">
+
+    <h2>
+      Skills
+    </h2>
+
+    <ul>
+
+      <li>
+        HTML • CSS • JavaScript
+      </li>
+
+      <li>
+        Bot Telegram (Python)
+      </li>
+
+      <li>
+        Linux • Termux
+      </li>
+
+      <li>
+        GitHub Pages
+      </li>
+
+    </ul>
+
+  </div>
+
+
+
+  <!-- ACTIVITY -->
+
+  <div class="card">
+
+    <h2>
+      Activity
+    </h2>
+
+    <ul>
+
+      <li>
+        Membuat website personal
+      </li>
+
+      <li>
+        Mengembangkan bot Telegram
+      </li>
+
+      <li>
+        Eksperimen server & domain
+      </li>
+
+    </ul>
+
+  </div>
+
+
+</section>
+
+
+
+<!-- ==============================
+     FOOTER
+============================== -->
+
+<footer>
+
+  © 2025 THELUKZ — Dark Cyber Web
+
+</footer>
+
+
+</body>
+</html>
